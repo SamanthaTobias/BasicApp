@@ -1,26 +1,26 @@
 package com.example.dockerjavaapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-
 @RestController
 public class HelloController {
 
-    private String appName = "Docker Java App";
+    @Autowired
+    private HelloService helloService;
 
     @GetMapping("/hello")
-    public String index() {
-        return "Hello from "  + appName + "! The current time is " + LocalDateTime.now();
+    public String hello() {
+        return helloService.getHelloMessage();
     }
 
     @PostMapping("/setName/{name}")
     public String setName(@PathVariable String name) {
-        appName = name;
-        return "Application name set to: " + appName;
+        helloService.setAppName(name);
+        return "Name set to '" + name + "'";
     }
 
 }
