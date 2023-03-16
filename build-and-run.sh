@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Build the Maven project
-mvn package
+mvn package -Dspring.config.location=classpath:application.properties
 
 # Build the Docker image
 docker build -t my-docker-java-app .
 
 # Run the Docker container
-docker run -p 8080:8080 my-docker-java-app
+docker run my-docker-java-app
