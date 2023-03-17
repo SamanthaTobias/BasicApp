@@ -2,17 +2,18 @@ package com.example.dockerjavaapp;
 
 import com.example.dockerjavaapp.controller.BasicAppController;
 import com.example.dockerjavaapp.service.BasicAppService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class BasicAppControllerTest {
 
     @InjectMocks
@@ -20,11 +21,6 @@ public class BasicAppControllerTest {
 
     @Mock
     private BasicAppService basicAppService;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     public void testHello() {
@@ -48,6 +44,25 @@ public class BasicAppControllerTest {
 
         assertEquals(expectedResponse, actualResponse);
         verify(basicAppService).setAppName(name);
+    }
+
+    @Test
+    public void testReverseString() {
+        String input = "hello";
+        String expected = "olleh";
+        String result = basicAppController.reverseString(input);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testGetLastReversedString() {
+        String input = "world";
+        String expected = "dlrow";
+        basicAppController.reverseString(input);
+        String result = basicAppController.getLastReversedString();
+
+        assertEquals(expected, result);
     }
 
 }
