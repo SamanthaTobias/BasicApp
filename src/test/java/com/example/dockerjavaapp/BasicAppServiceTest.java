@@ -1,23 +1,23 @@
 package com.example.dockerjavaapp;
 
-import com.example.dockerjavaapp.service.HelloService;
+import com.example.dockerjavaapp.service.BasicAppService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HelloServiceTest {
+public class BasicAppServiceTest {
 
-    private HelloService helloService;
+    private BasicAppService basicAppService;
 
     @BeforeEach
     public void setUp() {
-        helloService = new HelloService();
+        basicAppService = new BasicAppService();
     }
 
     @Test
     public void testGetHelloMessage() {
-        String response = helloService.getHelloMessage();
+        String response = basicAppService.getHelloMessage();
 
         String expectedMessage = "Hello from My Java App!";
         assertTrue(response.contains(expectedMessage));
@@ -26,9 +26,9 @@ public class HelloServiceTest {
     @Test
     public void testSetAppName() {
         String expectedAppName = "My New App";
-        helloService.setAppName(expectedAppName);
+        basicAppService.setAppName(expectedAppName);
 
-        String response = helloService.getHelloMessage();
+        String response = basicAppService.getHelloMessage();
 
         assertTrue(response.contains(expectedAppName));
     }

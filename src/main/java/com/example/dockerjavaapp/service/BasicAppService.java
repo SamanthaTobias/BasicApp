@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class HelloService {
+public class BasicAppService {
 
     private String appName = "My Java App";
 

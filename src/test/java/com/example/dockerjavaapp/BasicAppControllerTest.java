@@ -1,7 +1,7 @@
 package com.example.dockerjavaapp;
 
-import com.example.dockerjavaapp.controller.HelloController;
-import com.example.dockerjavaapp.service.HelloService;
+import com.example.dockerjavaapp.controller.BasicAppController;
+import com.example.dockerjavaapp.service.BasicAppService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class HelloControllerTest {
+public class BasicAppControllerTest {
 
     @InjectMocks
-    private HelloController helloController;
+    private BasicAppController basicAppController;
 
     @Mock
-    private HelloService helloService;
+    private BasicAppService basicAppService;
 
     @BeforeEach
     public void setup() {
@@ -30,24 +30,24 @@ public class HelloControllerTest {
     public void testHello() {
         LocalDateTime now = LocalDateTime.now();
         String expectedMessage = "Hello from the app! The current time is " + now;
-        when(helloService.getHelloMessage()).thenReturn(expectedMessage);
+        when(basicAppService.getHelloMessage()).thenReturn(expectedMessage);
 
-        String actualMessage = helloController.hello();
+        String actualMessage = basicAppController.hello();
 
         assertEquals(expectedMessage, actualMessage);
-        verify(helloService).getHelloMessage();
+        verify(basicAppService).getHelloMessage();
     }
 
     @Test
     public void testSetName() {
         String name = "MyApp";
         String expectedResponse = "Name set to '" + name + "'";
-        doNothing().when(helloService).setAppName(name);
+        doNothing().when(basicAppService).setAppName(name);
 
-        String actualResponse = helloController.setName(name);
+        String actualResponse = basicAppController.setName(name);
 
         assertEquals(expectedResponse, actualResponse);
-        verify(helloService).setAppName(name);
+        verify(basicAppService).setAppName(name);
     }
 
 }
