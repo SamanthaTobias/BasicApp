@@ -1,4 +1,4 @@
-package com.example.dockerjavaapp;
+package com.example.dockerjavaapp.service;
 
 import org.springframework.stereotype.Service;
 

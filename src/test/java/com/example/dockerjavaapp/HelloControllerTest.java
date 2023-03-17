@@ -1,5 +1,7 @@
 package com.example.dockerjavaapp;
 
+import com.example.dockerjavaapp.controller.HelloController;
+import com.example.dockerjavaapp.service.HelloService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
