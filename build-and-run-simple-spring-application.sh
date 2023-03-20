@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check if my-network exists, create it if it doesn't
+if ! docker network inspect my-network >/dev/null 2>&1; then
+    docker network create my-network
+fi
+
 # Build the Maven project
 mvn clean
 mvn package #-Dspring.config.location=classpath:application.properties
